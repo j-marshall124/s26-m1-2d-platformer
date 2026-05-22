@@ -12,24 +12,32 @@ public class Player : MonoBehaviour
     // We want to be able to ccontrol the sprite flipX to align with facing direction when we move
     public SpriteRenderer spriteRenderer;
 
+    //PLAYER 
     // How fast do we want the player to move?
     public float moveSpeed = 10f;
     //
     public float jumpSpeed = 10f;
+    public float maxJumpTime = 0.300f; // in seconds
+    public float maxCoyoteTime = 0.100f; // in seconds
+    public float fallGravity = -10; // Y
     //
     public LayerMask groundLayer;
     //
-    public float raycastDistance = 0.05f;
-    //
-    public float maxCoyoteTime = 0.100f; // in seconds
+    public float raycastDistance = 0.05f;    
 
     //
     private float coyoteTimeRemaining;
+    private float jumpTimeRemaining;
 
     // Physics / raycast variables
     Vector2 edgeClipTopOrigin;
     Vector2 edgeClipBotOrigin;
     Vector2 edgeClipRayDistance;
+
+    //void Awake()
+    //{
+    //    Physics2D.gravity = ;
+    //}
 
     void Update()
     {
@@ -49,28 +57,34 @@ public class Player : MonoBehaviour
             spriteRenderer.flipX = isFacingLeft;
 
             // Check to see if player is hitting a wall horizontally
-            Vector2 centre = transform.position;
-            Vector2 extents = capsuleCollider.bounds.extents;
-            float extentsX = isFacingLeft ? -extents.x : +extents.x;
-            edgeClipTopOrigin = centre + new Vector2(extentsX, +extents.y);
-            edgeClipBotOrigin = centre + new Vector2(extentsX, -extents.y);
-            Vector2 direction = Vector2.Normalize(new Vector2(extentsX, 0));
-            edgeClipRayDistance = direction * raycastDistance;
-            bool hitTop = Physics2D.Raycast(edgeClipTopOrigin, direction, raycastDistance, groundLayer);
-            bool hitBot = Physics2D.Raycast(edgeClipBotOrigin, direction, raycastDistance, groundLayer);
-            if (hitTop == false && hitBot == false)
-            {
+            //Vector2 centre = transform.position;
+            //Vector2 extents = capsuleCollider.bounds.extents;
+            //float extentsX = isFacingLeft ? -extents.x : +extents.x;
+            //edgeClipTopOrigin = centre + new Vector2(extentsX, +extents.y);
+            //edgeClipBotOrigin = centre + new Vector2(extentsX, -extents.y);
+            //Vector2 direction = Vector2.Normalize(new Vector2(extentsX, 0));
+            //edgeClipRayDistance = direction * raycastDistance;
+            //bool hitTop = Physics2D.Raycast(edgeClipTopOrigin, direction, raycastDistance, groundLayer);
+            //bool hitBot = Physics2D.Raycast(edgeClipBotOrigin, direction, raycastDistance, groundLayer);
+            //if (hitTop == false && hitBot == false)
+            //{
                 // Set move speed (horizontal) directly, overrides last value
                 rb2d.linearVelocityX = moveX * moveSpeed;
-            }
-            Debug.DrawLine(edgeClipTopOrigin, edgeClipTopOrigin + edgeClipRayDistance, hitTop ? Color.red : Color.green);
-            Debug.DrawLine(edgeClipBotOrigin, edgeClipBotOrigin + edgeClipRayDistance, hitBot ? Color.red : Color.green);
+            //}
+            //Debug.DrawLine(edgeClipTopOrigin, edgeClipTopOrigin + edgeClipRayDistance, hitTop ? Color.red : Color.green);
+            //Debug.DrawLine(edgeClipBotOrigin, edgeClipBotOrigin + edgeClipRayDistance, hitBot ? Color.red : Color.green);
         }
         // Synchronize the animator's parameters to this player's movement so it can automatically control the player's animation
         animator.SetFloat("moveSpeedX", Mathf.Abs(moveX));
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// JUMP
+
+        // Additional gravity while falling
+        if (rb2d.linearVelocityY < 0)
+        {
+            rb2d.AddForceY(fallGravity);
+        }
 
         // Decrement coyote time timer
         coyoteTimeRemaining -= Time.deltaTime;
@@ -94,9 +108,27 @@ public class Player : MonoBehaviour
             {
                 // Remove ability to coyote jump
                 coyoteTimeRemaining = 0;
+                // How much time player can continue jumping for
+                jumpTimeRemaining = maxJumpTime;
+            }
+        }
+
+        // If we can continue holding down jump
+        if (jumpTimeRemaining > 0)
+        {
+            // Are we holding spacebar this frame?
+            if (Input.GetKey(KeyCode.Space))
+            {
                 // Add force for jumping
                 rb2d.linearVelocityY = jumpSpeed;
             }
+            else
+            {
+                // End jump time
+                jumpTimeRemaining = 0;
+            }
+            // Decrement timer
+            jumpTimeRemaining -= Time.deltaTime;
         }
 
         animator.SetBool("isGrounded", isGrounded);
