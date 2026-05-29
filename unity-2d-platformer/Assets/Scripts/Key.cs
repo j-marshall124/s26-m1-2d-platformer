@@ -15,8 +15,8 @@ public class Key : MonoBehaviour
         if (collider2d.gameObject.CompareTag("Player"))
         {
             // Increment number of these collected
-            NumberCollected += 1;
-
+            //NumberCollected += 1;
+            hasKey = true;
             // Disable object on it's collected
             // This must be the last thing we do
             this.gameObject.SetActive(false);

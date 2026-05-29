@@ -57,22 +57,22 @@ public class Player : MonoBehaviour
             spriteRenderer.flipX = isFacingLeft;
 
             // Check to see if player is hitting a wall horizontally
-            //Vector2 centre = transform.position;
-            //Vector2 extents = capsuleCollider.bounds.extents;
-            //float extentsX = isFacingLeft ? -extents.x : +extents.x;
-            //edgeClipTopOrigin = centre + new Vector2(extentsX, +extents.y);
-            //edgeClipBotOrigin = centre + new Vector2(extentsX, -extents.y);
-            //Vector2 direction = Vector2.Normalize(new Vector2(extentsX, 0));
-            //edgeClipRayDistance = direction * raycastDistance;
-            //bool hitTop = Physics2D.Raycast(edgeClipTopOrigin, direction, raycastDistance, groundLayer);
-            //bool hitBot = Physics2D.Raycast(edgeClipBotOrigin, direction, raycastDistance, groundLayer);
-            //if (hitTop == false && hitBot == false)
-            //{
+            Vector2 centre = transform.position;
+            Vector2 extents = capsuleCollider.bounds.extents;
+            float extentsX = isFacingLeft ? -extents.x : +extents.x;
+            edgeClipTopOrigin = centre + new Vector2(extentsX, +extents.y);
+            edgeClipBotOrigin = centre + new Vector2(extentsX, -extents.y);
+            Vector2 direction = Vector2.Normalize(new Vector2(extentsX, 0));
+            edgeClipRayDistance = direction * raycastDistance;
+            bool hitTop = Physics2D.Raycast(edgeClipTopOrigin, direction, raycastDistance, groundLayer);
+            bool hitBot = Physics2D.Raycast(edgeClipBotOrigin, direction, raycastDistance, groundLayer);
+            if (hitTop == false && hitBot == false)
+            {
                 // Set move speed (horizontal) directly, overrides last value
                 rb2d.linearVelocityX = moveX * moveSpeed;
-            //}
-            //Debug.DrawLine(edgeClipTopOrigin, edgeClipTopOrigin + edgeClipRayDistance, hitTop ? Color.red : Color.green);
-            //Debug.DrawLine(edgeClipBotOrigin, edgeClipBotOrigin + edgeClipRayDistance, hitBot ? Color.red : Color.green);
+            }
+            Debug.DrawLine(edgeClipTopOrigin, edgeClipTopOrigin + edgeClipRayDistance, hitTop ? Color.red : Color.green);
+            Debug.DrawLine(edgeClipBotOrigin, edgeClipBotOrigin + edgeClipRayDistance, hitBot ? Color.red : Color.green);
         }
         // Synchronize the animator's parameters to this player's movement so it can automatically control the player's animation
         animator.SetFloat("moveSpeedX", Mathf.Abs(moveX));

@@ -7,11 +7,13 @@ public class ButtonLoadScene : MonoBehaviour
     
     public void LoadScene(string sceneToLoad)
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneToLoad);
     }
 
     public void RestartLevel()
     {
+        Time.timeScale = 1;
         // Get current scene
         Scene currentScene = SceneManager.GetActiveScene();
         // Reset scene
@@ -20,6 +22,6 @@ public class ButtonLoadScene : MonoBehaviour
 
     public void Exit()
     {
-
+        Application.Quit(); // Exits the game
     }
 }
