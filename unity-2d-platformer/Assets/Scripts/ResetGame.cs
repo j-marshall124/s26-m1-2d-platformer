@@ -1,19 +1,34 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ResetGame : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
-    public KeyCode ResetKey = KeyCode.R;
+    public KeyCode pauseKey = KeyCode.Escape;
+    public GameObject pauseMenu;
+    public bool isPaused;
 
     void Update()
     {
-        // If R key is pressed this frame
-        if (Input.GetKeyDown(ResetKey))
+        // If Escape key is pressed this frame
+        // Pause and resume using the escape key
+        if (Input.GetKeyDown(pauseKey))
         {
-            // Get current scene
-            Scene currentScene = SceneManager.GetActiveScene();
-            // Reset scene
-            SceneManager.LoadScene(currentScene.buildIndex);
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
         }
+    }
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+        isPaused = true;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+        isPaused = false;
     }
 }
