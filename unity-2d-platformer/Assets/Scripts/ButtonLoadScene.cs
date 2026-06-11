@@ -1,9 +1,12 @@
+/// 000314083 Jordan Marshall
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonLoadScene : MonoBehaviour
 {
     public string sceneToLoad;
+    public GameObject noKeyText;
     
     public void LoadScene(string sceneToLoad)
     {
@@ -23,5 +26,16 @@ public class ButtonLoadScene : MonoBehaviour
     public void Exit()
     {
         Application.Quit(); // Exits the game
+    }
+
+    public void Continue()
+    {
+        Time.timeScale = 1;
+        noKeyText.SetActive(false);
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("Level1");
     }
 }

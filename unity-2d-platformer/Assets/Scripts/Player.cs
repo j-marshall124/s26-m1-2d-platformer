@@ -1,3 +1,5 @@
+/// 000314083 Jordan Marshall
+
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -29,15 +31,18 @@ public class Player : MonoBehaviour
     private float coyoteTimeRemaining;
     private float jumpTimeRemaining;
 
+    public Vector3 startPosition;
+
     // Physics / raycast variables
     Vector2 edgeClipTopOrigin;
     Vector2 edgeClipBotOrigin;
     Vector2 edgeClipRayDistance;
 
-    //void Awake()
-    //{
-    //    Physics2D.gravity = ;
-    //}
+    void Start()
+    {
+        // Record where the ball began in the scene
+        startPosition = transform.position;
+    }
 
     void Update()
     {

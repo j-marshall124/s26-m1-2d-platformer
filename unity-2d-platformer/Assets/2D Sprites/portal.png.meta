@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 630fec997b9aa27478fc00b21e11474a
+guid: 2d5649aed1bc7f3429b42499155bf92f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 141864974910434466
-    second: Speed Boost_0
-  - first:
-      213: -6327715168257953343
-    second: Speed Boost_1
+      213: -5816642994671486895
+    second: portal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -104,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,35 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Speed Boost_0
+      name: portal_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 19
-        width: 16
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2ac2b9b617108f100800000000000000
-      internalID: 141864974910434466
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Speed Boost_1
-      rect:
-        serializedVersion: 2
-        x: 4
         y: 0
-        width: 66
-        height: 50
+        width: 76
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1c1322484907f28a0800000000000000
-      internalID: -6327715168257953343
+      spriteID: 1587755a302274fa0800000000000000
+      internalID: -5816642994671486895
       vertices: []
       indices: 
       edges: []
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Speed Boost_0: 141864974910434466
-      Speed Boost_1: -6327715168257953343
+      portal_0: -5816642994671486895
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

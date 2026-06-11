@@ -1,3 +1,5 @@
+/// 000314083 Jordan Marshall
+
 using UnityEngine;
 
 public class HeartsAvailable : MonoBehaviour
@@ -12,7 +14,7 @@ public class HeartsAvailable : MonoBehaviour
     {
         currentHearts += amount;
 
-        if (currentHearts <= 0)
+        if (currentHearts <= 0) // If hearts are 0, game over menu pops up
         {
             Time.timeScale = 0;
             gameOverMenu.SetActive(true);
