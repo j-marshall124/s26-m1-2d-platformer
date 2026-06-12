@@ -1,3 +1,5 @@
+/// 000314083 Jordan Marshall
+
 using UnityEngine;
 
 public class RandomSound : MonoBehaviour
@@ -10,7 +12,6 @@ public class RandomSound : MonoBehaviour
 
     public void PlayRandomSound() // Call this to play a random sound
     {
-        // Safety check to ensure we actually have clips assigned
         if (soundEffects.Length == 0 || audioSource == null)
             return;
 
