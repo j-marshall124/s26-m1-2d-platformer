@@ -36,6 +36,7 @@ public class ButtonLoadScene : MonoBehaviour
 
     public void PlayAgain()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Level1");
     }
 }

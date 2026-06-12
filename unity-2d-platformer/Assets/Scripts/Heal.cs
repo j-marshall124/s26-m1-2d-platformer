@@ -6,6 +6,10 @@ public class Heal : MonoBehaviour
 {
     public HeartsAvailable hearts;
 
+    // Audio
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
     private void OnTriggerEnter2D(Collider2D collider2d)
     {
         // See if collider object is tagged as "Player"
@@ -18,6 +22,7 @@ public class Heal : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(audioClip);
                 hearts.currentHearts += 1; // Heals the player by 1 heart
                 // Disable object on it's collected
                 // This must be the last thing we do

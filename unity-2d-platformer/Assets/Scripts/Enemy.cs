@@ -85,14 +85,6 @@ public class Enemy : MonoBehaviour
         rb2d.linearVelocityX = linearVelocityX;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // rest game? level? life reduced?
-        }
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, playerChaseRadius);

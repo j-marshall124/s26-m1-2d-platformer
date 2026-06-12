@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
     Vector2 edgeClipBotOrigin;
     Vector2 edgeClipRayDistance;
 
+    public RandomSound randomSound;
+
     void Start()
     {
         // Record where the ball began in the scene
@@ -115,6 +117,7 @@ public class Player : MonoBehaviour
                 coyoteTimeRemaining = 0;
                 // How much time player can continue jumping for
                 jumpTimeRemaining = maxJumpTime;
+                randomSound.PlayRandomSound();
             }
         }
 
@@ -137,6 +140,11 @@ public class Player : MonoBehaviour
         }
 
         animator.SetBool("isGrounded", isGrounded);
+    }
+
+    public void Respawn(Vector3 respawn)
+    {
+        transform.position = respawn;
     }
 
     // Runs every time we change something in the inspector of this component, or Reset is called, when Unity recompiles, etc.
