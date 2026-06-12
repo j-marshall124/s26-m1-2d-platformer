@@ -1,6 +1,7 @@
 /// 000314083 Jordan Marshall
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Key : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Key : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip audioClip;
 
+    public CanvasGroup key;
+
     private void OnTriggerEnter2D(Collider2D collider2d)
     {
         // See if collider object is tagged as "Player"
@@ -21,6 +24,7 @@ public class Key : MonoBehaviour
         if (collider2d.gameObject.CompareTag("Player"))
         {
             audioSource.PlayOneShot(audioClip);
+            key.alpha = 1.0f;
             // Increment number of these collected
             //NumberCollected += 1;
             hasKey = true;
