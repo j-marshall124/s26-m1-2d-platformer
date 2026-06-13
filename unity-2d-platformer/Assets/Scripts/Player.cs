@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     Vector2 edgeClipRayDistance;
 
     public RandomSound randomSound;
+    public Powerup powerup;
 
     void Start()
     {
@@ -50,6 +51,13 @@ public class Player : MonoBehaviour
     {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// MOVE HORIZONTAL
+
+        // Increases stats when power up is collected
+        if (powerup.hasPowerup == true)
+        {
+            moveSpeed = 8.7f;
+            jumpSpeed = 6.2f;
+        }
 
         // Get the player's movement input from Unity's legacy input system
         float moveX = Input.GetAxis("Horizontal");
@@ -118,7 +126,7 @@ public class Player : MonoBehaviour
                 // How much time player can continue jumping for
                 jumpTimeRemaining = maxJumpTime;
                 randomSound.PlayRandomSound();
-            }
+            }            
         }
 
         // If we can continue holding down jump
